@@ -12,6 +12,11 @@ public class SpawnAdds : MonoBehaviour
     [SerializeField] private List<GameObject> adList = new List<GameObject>();
     [SerializeField] private float minX, minY, maxX, maxY;
     [SerializeField] RectTransform canvas;
+    [SerializeField] private List<GameObject> ads = new List<GameObject>();
+
+    [Header("Cookies")]
+    [SerializeField] public bool isAccepted = false;
+    [SerializeField] private GameObject cookieBanner;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,7 @@ public class SpawnAdds : MonoBehaviour
             curTime = 0f;
             int rand = Random.Range(0, adList.Count);
             GameObject currentAd = Instantiate(adList[rand]);
+            ads.Add(currentAd);
             RectTransform adRect = currentAd.GetComponent<RectTransform>();
             adRect.SetParent(canvas);
             adRect.localScale = Vector3.one;
@@ -40,5 +46,23 @@ public class SpawnAdds : MonoBehaviour
         }
     }
 
-    
+    public void SetSpawnRate(float spawnRate)
+    {
+        spawnInterval = spawnRate;
+    }
+
+    public void ShowCookies()
+    {
+        cookieBanner.SetActive(!isAccepted);
+
+        for (int i = ads.Count - 1; i >= 0; i--)
+        {
+            ads[i].SetActive(false);
+        }
+    }
+
+    public void SetCookies(bool state)
+    {
+        isAccepted = state;
+    }
 }
