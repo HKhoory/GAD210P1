@@ -29,7 +29,7 @@ public class AutoFlip : MonoBehaviour {
     public void FlipRightPage()
     {
         if (isFlipping) return;
-        if (ControledBook.currentPage >= ControledBook.TotalPageCount) return;
+        if (Book.currentPage >= ControledBook.TotalPageCount) return;
         isFlipping = true;
         float frameTime = PageFlipTime / AnimationFramesCount;
         float xc = (ControledBook.EndBottomRight.x + ControledBook.EndBottomLeft.x) / 2;
@@ -42,7 +42,7 @@ public class AutoFlip : MonoBehaviour {
     public void FlipLeftPage()
     {
         if (isFlipping) return;
-        if (ControledBook.currentPage <= 0) return;
+        if (Book.currentPage <= 0) return;
         isFlipping = true;
         float frameTime = PageFlipTime / AnimationFramesCount;
         float xc = (ControledBook.EndBottomRight.x + ControledBook.EndBottomLeft.x) / 2;
@@ -78,14 +78,14 @@ public class AutoFlip : MonoBehaviour {
         switch (Mode)
         {
             case FlipMode.RightToLeft:
-                while (ControledBook.currentPage < ControledBook.TotalPageCount)
+                while (Book.currentPage < ControledBook.TotalPageCount)
                 {
                     StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
                     yield return new WaitForSeconds(TimeBetweenPages);
                 }
                 break;
             case FlipMode.LeftToRight:
-                while (ControledBook.currentPage > 0)
+                while (Book.currentPage > 0)
                 {
                     StartCoroutine(FlipLTR(xc, xl, h, frameTime, dx));
                     yield return new WaitForSeconds(TimeBetweenPages);
