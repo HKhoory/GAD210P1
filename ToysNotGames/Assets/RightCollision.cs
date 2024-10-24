@@ -25,15 +25,16 @@ public class RightCollision : MonoBehaviour
                 numberOfCollided++;
                 //Debug.Log(numberOfCollided);
                 isCollided = true;
+                StartCoroutine(StartTimer());
             }
-            StartCoroutine(StartTimer());
+            
         }
     }
     private IEnumerator StartTimer()
     {
         // Wait for 6 seconds
         yield return new WaitForSeconds(5f);
-
+        isCollided = false;
         numberOfCollided--;
         //Debug.Log(numberOfCollided);
     }
