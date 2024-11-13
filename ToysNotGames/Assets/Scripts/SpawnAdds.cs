@@ -65,4 +65,17 @@ public class SpawnAdds : MonoBehaviour
     {
         isAccepted = state;
     }
+
+    public void CloseApp()
+    {
+        Application.Quit();
+    }
+
+    public void CloseTab()
+    {
+        for (int i = ads.Count - 1;i >= 0;i--)
+        {
+            ads[i].SetActive(false);
+        }
+    }
 }
