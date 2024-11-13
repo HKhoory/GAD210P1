@@ -44,6 +44,8 @@ public class SpawnAdds : MonoBehaviour
             var ypos = Random.Range(minY,  -maxY+adSize.y);
             adRect.anchoredPosition = new Vector2(xpos, ypos);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) CloseApp(); 
     }
 
     public void SetSpawnRate(float spawnRate)
